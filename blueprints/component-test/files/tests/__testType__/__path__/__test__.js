@@ -1,4 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
+<%= additionalImports %>
 
 moduleForComponent('<%= componentPathName %>', '<%= friendlyTestDescription %>', {
   <%= testTypeDefinition %>

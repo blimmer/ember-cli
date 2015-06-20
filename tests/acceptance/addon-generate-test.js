@@ -125,8 +125,10 @@ describe('Acceptance: ember generate in-addon', function() {
       assertFile('tests/integration/components/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{x-foo}}`)"
         ]
       });
     });
@@ -137,14 +139,16 @@ describe('Acceptance: ember generate in-addon', function() {
       assertFile('tests/integration/components/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{x-foo}}`)"
         ]
       });
       assertFileToNotExist('app/component-test/x-foo.js');
     });
   });
-  
+
   it('in-addon component-test x-foo --unit', function() {
     return generateInAddon(['component-test', 'x-foo', '--unit']).then(function() {
       assertFile('tests/unit/components/x-foo-test.js', {
@@ -157,7 +161,7 @@ describe('Acceptance: ember generate in-addon', function() {
       assertFileToNotExist('app/component-test/x-foo.js');
     });
   });
-  
+
   it('in-addon component nested/x-foo', function() {
     return generateInAddon(['component', 'nested/x-foo']).then(function() {
       assertFile('addon/components/nested/x-foo.js', {
@@ -180,8 +184,10 @@ describe('Acceptance: ember generate in-addon', function() {
       assertFile('tests/integration/components/nested/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('nested/x-foo'",
-          "integration: true" 
+          "integration: true",
+          "this.render(hbs`{{nested/x-foo}}`)"
         ]
       });
     });
@@ -396,7 +402,7 @@ describe('Acceptance: ember generate in-addon', function() {
       });
     });
   });
-  
+
   it('in-addon route-test foo', function() {
     return generateInAddon(['route-test', 'foo']).then(function() {
       assertFile('tests/unit/routes/foo-test.js', {
@@ -624,7 +630,7 @@ describe('Acceptance: ember generate in-addon', function() {
       });
     });
   });
-  
+
   it('in-addon adapter-test foo', function() {
     return generateInAddon(['adapter-test', 'foo']).then(function() {
       assertFile('tests/unit/adapters/foo-test.js', {
@@ -679,7 +685,7 @@ describe('Acceptance: ember generate in-addon', function() {
       });
     });
   });
-  
+
   it('in-addon serializer-test foo', function() {
     return generateInAddon(['serializer-test', 'foo']).then(function() {
       assertFile('tests/unit/serializers/foo-test.js', {
@@ -836,7 +842,7 @@ describe('Acceptance: ember generate in-addon', function() {
     });
   });
 
-  
+
   it('in-addon service-test foo', function() {
     return generateInAddon(['service-test', 'foo']).then(function() {
       assertFile('tests/unit/services/foo-test.js', {
@@ -1034,7 +1040,7 @@ describe('Acceptance: ember generate in-addon', function() {
         assertFileToNotExist('app/acceptance-tests/foo.js');
       });
     });
-    
+
     it('in-addon acceptance-test foo/bar', function() {
       return generateInAddon(['acceptance-test', 'foo/bar']).then(function() {
         var expected = path.join(__dirname, '../fixtures/generate/addon-acceptance-test-nested-expected.js');

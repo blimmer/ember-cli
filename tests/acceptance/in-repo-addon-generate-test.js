@@ -146,13 +146,15 @@ describe('Acceptance: ember generate in-repo-addon', function() {
       assertFile('tests/integration/components/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{x-foo}}`)"
         ]
       });
     });
   });
-  
+
   it('in-repo-addon component-test x-foo --unit', function() {
     return generateInRepoAddon(['component-test', 'x-foo', '--in-repo-addon=my-addon', '--unit']).then(function() {
       assertFile('tests/unit/components/x-foo-test.js', {
@@ -187,8 +189,10 @@ describe('Acceptance: ember generate in-repo-addon', function() {
       assertFile('tests/integration/components/nested/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('nested/x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{nested/x-foo}}`)"
         ]
       });
     });

@@ -110,8 +110,10 @@ describe('Acceptance: ember generate', function() {
       assertFile('tests/integration/components/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{x-foo}}`)"
         ]
       });
     });
@@ -132,8 +134,10 @@ describe('Acceptance: ember generate', function() {
       assertFile('tests/integration/components/foo/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('foo/x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{foo/x-foo}}`)"
         ]
       });
     });
@@ -154,8 +158,10 @@ describe('Acceptance: ember generate', function() {
       assertFile('tests/integration/components/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{x-foo}}`)"
         ]
       });
     });
@@ -166,13 +172,15 @@ describe('Acceptance: ember generate', function() {
       assertFile('tests/integration/components/x-foo-test.js', {
         contains: [
           "import { moduleForComponent, test } from 'ember-qunit';",
+          "import hbs from 'htmlbars-inline-precompile';",
           "moduleForComponent('x-foo'",
-          "integration: true"
+          "integration: true",
+          "this.render(hbs`{{x-foo}}`)"
         ]
       });
     });
   });
-  
+
   it('component-test x-foo --unit', function() {
     return generate(['component-test', 'x-foo', '--unit']).then(function() {
       assertFile('tests/unit/components/x-foo-test.js', {
